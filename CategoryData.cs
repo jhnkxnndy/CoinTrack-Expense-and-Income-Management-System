@@ -13,11 +13,11 @@ namespace ExpenseTracker
 
     class CategoryData
     {
-        // Properties for database connection and command objects
+
         private MySqlConnection MySqlConnection { get; }
         private MySqlCommand MySqlCommand { get; }
 
-        // Constructor to initialize MySqlConnection and MySqlCommand
+ 
         public CategoryData(string server, string username, string password, string database)
         {
    
@@ -29,7 +29,7 @@ namespace ExpenseTracker
 
       
 
-        // Method to retrieve category data from the database
+ 
         public List<CategoryData> GetCategoryData(string server, string username, string password, string database)
         {
             List<CategoryData> categoryList = new List<CategoryData>();
@@ -37,15 +37,15 @@ namespace ExpenseTracker
             try
             {
                 MySqlConnection connection = new MySqlConnection($"server={server};user id={username};password={password};database={database}");
-                connection.Open(); // Open the database connection
+                connection.Open(); 
 
                 string selectQuery = "SELECT * FROM categories";
 
-                MySqlCommand command = new MySqlCommand(selectQuery, connection); // Create a MySqlCommand
+                MySqlCommand command = new MySqlCommand(selectQuery, connection); 
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    // Iterate through the result set and populate categoryList
+               
                     while (reader.Read())
                     {
                         CategoryData categoryData = new CategoryData(server, username, password, database);
@@ -67,7 +67,7 @@ namespace ExpenseTracker
             return categoryList;
         }
 
-        // Properties for category data
+
         public int ID { get; set; }
         public string Category { get; set; }
         public string Type { get; set; }
