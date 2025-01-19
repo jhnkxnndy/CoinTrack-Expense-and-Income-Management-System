@@ -44,13 +44,13 @@ namespace ExpenseTracker
             expensesTotal();
 
 
-            // Set up a Timer to update the clock every second
+     
             Timer timer = new Timer();
-            timer.Interval = 1000; // 1000 milliseconds = 1 second
+            timer.Interval = 1000; 
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            // Call the Timer_Tick method immediately to display the initial time
+   
             Timer_Tick(null, null);
         }
 
@@ -119,7 +119,6 @@ namespace ExpenseTracker
                     }
                     else
                     {
-                        // If no income for today, set the label to show 0
                         todayIncome.Text = "₱0.00";
                     }
                 }
@@ -235,7 +234,7 @@ namespace ExpenseTracker
                     }
                     else
                     {
-                        // If no income for today, set the label to show 0
+      
                         todayExpenses.Text = "₱0.00";
                     }
                 }
@@ -400,7 +399,7 @@ namespace ExpenseTracker
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            // Update the label with the current time, minutes, and seconds
+     
             DTText.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt");
         }
         private void timer1_Tick(object sender, EventArgs e)
