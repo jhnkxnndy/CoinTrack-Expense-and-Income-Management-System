@@ -71,26 +71,19 @@ namespace ExpenseTracker
                     {
                         if (reader.Read())
                         {
-                            // Login successful
+                         
                             MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // You can perform any additional actions here after successful login,
-                            // such as opening a new form or updating the UI.
-
                             string loggedInUsername = reader.GetString("Username");
-
-                            // Set the username in the OverviewForm
                             ClassSignIn.LoggedInUsername = SIUsername.Text;
                             ClassSignIn.DashUser = SIUsername.Text;
 
-                            // Open the OverviewForm
                             MainInterface mainInterface = new MainInterface();
                             mainInterface.Show();
                             this.Hide();
                         }
                         else
                         {
-                            // Login failed
+                  
                             MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
