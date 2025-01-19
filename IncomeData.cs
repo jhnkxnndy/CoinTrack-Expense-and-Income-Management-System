@@ -9,7 +9,7 @@ namespace ExpenseTracker
 {
     class IncomeData
     {
-        // Properties for category data
+
         public int ID { get; set; }
         public string Category { get; set; }
         public string Item { get; set; }
@@ -17,14 +17,11 @@ namespace ExpenseTracker
         public string Description { get; set; }
         public string DateIncome { get; set; }
 
-        // Constructor (if needed)
-
-        // Method to retrieve income data from the database
-        // Properties for database connection and command objects
+   
         private MySqlConnection MySqlConnection { get; }
         private MySqlCommand MySqlCommand { get; }
 
-        // Constructor to initialize MySqlConnection and MySqlCommand
+ 
         public IncomeData(string server, string username, string password, string database)
         {
 
@@ -35,7 +32,7 @@ namespace ExpenseTracker
         }
 
 
-        // Method to retrieve category data from the database
+
         public List<IncomeData> GetIncomeData(string server, string username, string password, string database)
         {
             List<IncomeData> incomeList = new List<IncomeData>();
@@ -43,15 +40,15 @@ namespace ExpenseTracker
             try
             {
                 MySqlConnection connection = new MySqlConnection($"server={server};user id={username};password={password};database={database}");
-                connection.Open(); // Open the database connection
+                connection.Open();
 
                 string selectQuery = "SELECT * FROM income";
 
-                MySqlCommand command = new MySqlCommand(selectQuery, connection); // Create a MySqlCommand
+                MySqlCommand command = new MySqlCommand(selectQuery, connection); 
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    // Iterate through the result set and populate categoryList
+               
                     while (reader.Read())
                     {
                         IncomeData iData = new IncomeData(server, username, password, database);
