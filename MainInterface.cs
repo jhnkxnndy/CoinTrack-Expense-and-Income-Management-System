@@ -16,7 +16,7 @@ namespace ExpenseTracker
         private void SomeMethod()
         {
             string username = FrmSignIn.ClassSignIn.LoggedInUsername;
-            // Do something with username
+        
         }
         public MainInterface()
         {
