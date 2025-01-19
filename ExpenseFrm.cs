@@ -48,11 +48,11 @@ namespace ExpenseTracker
             {
                 connection.Open();
 
-                string SelectData = "SELECT Category FROM categories WHERE type = @Type AND status = @Status"; // Removed "AND amount = @Amount" assuming you don't need it for now
+                string SelectData = "SELECT Category FROM categories WHERE type = @Type AND status = @Status"; 
 
                 using (MySqlCommand cmd = new MySqlCommand(SelectData, connection))
                 {
-                    cmd.Parameters.AddWithValue("@Type", "Expenses"); // Assuming "Income" is the correct value for filtering
+                    cmd.Parameters.AddWithValue("@Type", "Expenses"); 
                     cmd.Parameters.AddWithValue("@Status", "Active");
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -68,7 +68,7 @@ namespace ExpenseTracker
         private void ExpenseFrm_Load(object sender, EventArgs e)
         {
             DTDate.Value = DateTime.Today;
-           // DTDate.MaxDate = DateTime.Today;
+     
         }
 
         private void ExpenseAddBtn_Click(object sender, EventArgs e)
@@ -81,12 +81,12 @@ namespace ExpenseTracker
             {
                 try
                 {
-                    // convert the cost input to a decimal value
+           
                     decimal cost;
                     if (!decimal.TryParse(ExpenseCost.Text, out cost))
                     {
                         MessageBox.Show("Invalid cost amount! Please enter a valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // Exit the process if the input is not a valid number
+                        return; 
                     }
 
                     using (MySqlConnection connection = new MySqlConnection("server=" + server + ";user id=" + username + ";password=" + password + ";database=" + database))
@@ -100,7 +100,7 @@ namespace ExpenseTracker
                         {
                             cmd.Parameters.AddWithValue("@cat", ExpenseCatCB.SelectedItem);
                             cmd.Parameters.AddWithValue("@item", ExpenseItem.Text);
-                            cmd.Parameters.AddWithValue("@cost", cost); // Use the converted cost value
+                            cmd.Parameters.AddWithValue("@cost", cost); 
                             cmd.Parameters.AddWithValue("@desc", ExpenseDesc.Text);
                             cmd.Parameters.AddWithValue("@dateexp", DTDate.Value);
 
@@ -148,12 +148,12 @@ namespace ExpenseTracker
                 {
                     try
                     {
-                        // convert the cost input to a decimal value
+                     
                         decimal cost;
                         if (!decimal.TryParse(ExpenseCost.Text, out cost))
                         {
                             MessageBox.Show("Invalid cost amount! Please enter a valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return; // Exit the process if the input is not a valid number
+                            return; 
                         }
 
                         using (MySqlConnection connection = new MySqlConnection("server=" + server + ";user id=" + username + ";password=" + password + ";database=" + database))
@@ -170,7 +170,7 @@ namespace ExpenseTracker
                                 cmd.Parameters.AddWithValue("@dateexp", DTDate.Value);
                                 cmd.Parameters.AddWithValue("@id", getID);
 
-                                // Use the converted cost value
+                  
                                 cmd.Parameters.AddWithValue("@cost", cost);
 
                                 DateTime now = DateTime.Now;
@@ -241,7 +241,7 @@ namespace ExpenseTracker
                             MessageBox.Show("Deleted Successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        // Reset auto-increment 
+                        
                         ResetAutoIncrement(connection);
 
                         connection.Close();
