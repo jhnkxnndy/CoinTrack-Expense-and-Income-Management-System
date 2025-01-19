@@ -163,7 +163,7 @@ namespace ExpenseTracker
                             DateTime now = DateTime.Now;
                             cmd.Parameters.AddWithValue("@date", now);
 
-                            // Assuming getID contains the ID of the record you want to update
+                      
                             cmd.Parameters.AddWithValue("@id", getID);
 
                             int rowsAffected = cmd.ExecuteNonQuery();
@@ -208,7 +208,7 @@ namespace ExpenseTracker
                         using (MySqlCommand cmd = new MySqlCommand(deleteData, connection))
                         {
 
-                            // Assuming getID contains the ID of the record you want to delete
+                      
                             cmd.Parameters.AddWithValue("@id", getID);
 
                             int rowsAffected = cmd.ExecuteNonQuery();
@@ -217,13 +217,13 @@ namespace ExpenseTracker
                             {
                                 MessageBox.Show("Deleted Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                // Refresh the DataGridView
+            
                                 guna2DataGridView1.Refresh();
 
-                                // Reload data after deletion
+               
                                 LoadData();
 
-                                // Reset auto-increment value
+                  
                                 ResetAutoIncrement(connection);
                                 ClearFields();
                             }
