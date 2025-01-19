@@ -49,11 +49,11 @@ namespace ExpenseTracker
             {
                 connection.Open();
 
-                string SelectData = "SELECT Category FROM categories WHERE type = @Type AND status = @Status"; // Removed "AND amount = @Amount" assuming you don't need it for now
+                string SelectData = "SELECT Category FROM categories WHERE type = @Type AND status = @Status"; 
 
                 using (MySqlCommand cmd = new MySqlCommand(SelectData, connection))
                 {
-                    cmd.Parameters.AddWithValue("@Type", "Income"); // Assuming "Income" is the correct value for filtering
+                    cmd.Parameters.AddWithValue("@Type", "Income"); 
                     cmd.Parameters.AddWithValue("@Status", "Active");
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -70,7 +70,7 @@ namespace ExpenseTracker
         {
             displayIncomeData();
             DTDate.Value = DateTime.Today;
-          //  DTDate.MaxDate = DateTime.Today;
+         
 
         }
 
@@ -106,12 +106,12 @@ namespace ExpenseTracker
                             cmd.Parameters.AddWithValue("@cat", IncomeCatCB.SelectedItem);
                             cmd.Parameters.AddWithValue("@item", IncomeItemTxt.Text);
 
-                            // Convert the income input to a decimal value
+  
                             decimal income;
                             if (!decimal.TryParse(IncomeText.Text, out income))
                             {
                                 MessageBox.Show("Invalid income amount! Please enter a valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return; // Exit the process if the input is not a valid number
+                                return; 
                             }
                             cmd.Parameters.AddWithValue("@income", income);
 
@@ -149,12 +149,12 @@ namespace ExpenseTracker
                 {
                     try
                     {
-                        // convert the input to a decimal value
+                
                         decimal income;
                         if (!decimal.TryParse(IncomeText.Text, out income))
                         {
                             MessageBox.Show("Invalid income amount! Please enter a valid number.", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return; // Exit the process if the input is not a valid number
+                            return; 
                         }
 
                         using (MySqlConnection connection = new MySqlConnection("server=" + server + ";user id=" + username + ";password=" + password + ";database=" + database))
@@ -168,7 +168,7 @@ namespace ExpenseTracker
                             {
                                 cmd.Parameters.AddWithValue("@cat", IncomeCatCB.SelectedItem);
                                 cmd.Parameters.AddWithValue("@item", IncomeItemTxt.Text);
-                                cmd.Parameters.AddWithValue("@income", income); // Use the converted income value
+                                cmd.Parameters.AddWithValue("@income", income); 
                                 cmd.Parameters.AddWithValue("@desc", IncomeDescTxt.Text);
                                 cmd.Parameters.AddWithValue("@dateinc", DTDate.Value);
                                 cmd.Parameters.AddWithValue("@id", getID);
@@ -236,7 +236,7 @@ namespace ExpenseTracker
                             MessageBox.Show("Deleted Successfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        // Reset auto-increment 
+                     
                         ResetAutoIncrement(connection);
 
                         connection.Close();
